@@ -1,0 +1,12 @@
+*.o
+*.lo
+**/.libs
+**/.deps
+.gitmodules
+*.log
+**/log
+**/html
+**/xml
+*.xml
+**/temp
+**/*.cache
