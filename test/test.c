@@ -41,6 +41,7 @@ int main()
     sai_attribute_t           member_attrs_2[2];
     sai_object_id_t          *lag_member_oid_3;
     sai_attribute_t           member_attrs_3[2];
+    sai_attribute_t           attr;
 	
     status = sai_api_initialize(0, &test_services);
     status = sai_api_query(SAI_API_SWITCH, (void**)&switch_api);
@@ -127,7 +128,8 @@ int main()
 
     // STEP 7
 
-    status = lag_api->get_lag_attribute(lag_oid_0, 1, port_list);
+    attr.id = SAI_LAG_ATTR_PORT_LIST;
+    status = lag_api->get_lag_attribute(lag_oid_0, 1, &attr);
     if (status != SAI_STATUS_SUCCESS) {
         printf("Failed to get a LAG attribure, status=%d\n", status);
         return 1;
@@ -135,7 +137,8 @@ int main()
 
     // STEP 8
 
-    status = lag_api->get_lag_attribute(lag_oid_1, 1, port_list);
+    attr.id = SAI_LAG_ATTR_PORT_LIST;
+    status = lag_api->get_lag_attribute(lag_oid_1, 1, &attr);
     if (status != SAI_STATUS_SUCCESS) {
         printf("Failed to get a LAG attribure, status=%d\n", status);
         return 1;
@@ -143,7 +146,8 @@ int main()
 
     // STEP 9
 
-    status = lag_api->get_lag_member_attribute(lag_member_oid_0, 1, member_attrs_3[0].value.oid);
+    attr.id = SAI_LAG_MEMBER_ATTR_LAG_ID;
+    status = lag_api->get_lag_member_attribute(lag_member_oid_0, 1, &attr);
     if (status != SAI_STATUS_SUCCESS) {
         printf("Failed to get a LAG_MEMBER attribure, status=%d\n", status);
         return 1;
@@ -151,7 +155,8 @@ int main()
     
     // STEP 10
 
-    status = lag_api->get_lag_member_attribute(lag_member_oid_2, 1, member_attrs_2[1].value.oid);
+    attr.id = SAI_LAG_MEMBER_ATTR_PORT_ID;
+    status = lag_api->get_lag_member_attribute(lag_member_oid_2, 1, &attr);
     if (status != SAI_STATUS_SUCCESS) {
         printf("Failed to get a LAG_MEMBER attribure, status=%d\n", status);
         return 1;
@@ -166,8 +171,8 @@ int main()
     }
     
     // STEP 12
-
-    status = lag_api->get_lag_attribute(lag_oid_0, 1, port_list);
+    attr.id = SAI_LAG_ATTR_PORT_LIST;
+    status = lag_api->get_lag_attribute(lag_oid_0, 1, &attr);
     if (status != SAI_STATUS_SUCCESS) {
         printf("Failed to get a LAG attribure, status=%d\n", status);
         return 1;
@@ -183,7 +188,8 @@ int main()
     
     // STEP 14
 
-    status = lag_api->get_lag_attribute(lag_oid_1, 1, port_list);
+    attr.id = SAI_LAG_ATTR_PORT_LIST;
+    status = lag_api->get_lag_attribute(lag_oid_1, 1, &attr);
     if (status != SAI_STATUS_SUCCESS) {
         printf("Failed to get a LAG attribure, status=%d\n", status);
         return 1;
